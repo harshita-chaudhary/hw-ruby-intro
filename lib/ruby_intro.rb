@@ -3,17 +3,17 @@
 # Part 1
 
 def sum arr
-  arr.inject(:+)
+  arr.inject(0,:+)
 end
 
 def max_2_sum arr
-  arr.max(2).reduce(:+)
+  arr.max(2).reduce(0,:+)
 end
 
 def sum_to_n? arr, n
-  arr.each { |x|
-    return arr.include?(n-x)
-  }
+  while num=arr.pop do
+    return true if arr.member?(n-num)
+  end
   return false
 end
 
