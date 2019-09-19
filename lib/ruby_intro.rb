@@ -3,17 +3,17 @@
 # Part 1
 
 def sum arr
-  arr.inject(0, :+)
+  arr.inject(:+)
 end
 
 def max_2_sum arr
-  arr.max(2).reduce(0,:+)
+  arr.max(2).reduce(:+)
 end
 
 def sum_to_n? arr, n
-  while num=arr.pop do
-    return true if arr.member?(n-num)
-  end
+  arr.each { |x|
+    return arr.include?(n-x)
+  }
   return false
 end
 
@@ -24,11 +24,11 @@ def hello(name)
 end
 
 def starts_with_consonant? s
-  s =~ /\A(?=[^aeiou])(?=[a-z])/i
+  return s =~ /\A(?=[a-z])(?=[^aeiou])/i
 end
 
 def binary_multiple_of_4? s
-  s =~ /(^0|^[10]*00)$/
+  return s =~ /(^[01]*00|^0)$/
 end
 
 # Part 3
@@ -39,11 +39,10 @@ class BookInStock
 
   def initialize(isbn, price)
     raise ArgumentError if isbn.empty? || price <= 0
-    @isbn = isbn
     @price = price
+    @isbn = isbn
   end
 
-  #format price with $ and 2 decimal places
   def price_as_string
     "$%.2f" % @price
   end
