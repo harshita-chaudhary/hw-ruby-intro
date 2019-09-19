@@ -3,33 +3,49 @@
 # Part 1
 
 def sum arr
-  # YOUR CODE HERE
+  arr.inject(0, :+)
 end
 
 def max_2_sum arr
-  # YOUR CODE HERE
+  arr.max(2).reduce(0,:+)
 end
 
 def sum_to_n? arr, n
-  # YOUR CODE HERE
+  while num=arr.pop do
+    return true if arr.member?(n-num)
+  end
+  return false
 end
 
 # Part 2
 
 def hello(name)
-  # YOUR CODE HERE
+  return "Hello, " + name
 end
 
 def starts_with_consonant? s
-  # YOUR CODE HERE
+  s =~ /\A(?=[^aeiou])(?=[a-z])/i
 end
 
 def binary_multiple_of_4? s
-  # YOUR CODE HERE
+  s =~ /(^0|^[10]*00)$/
 end
 
 # Part 3
 
 class BookInStock
-# YOUR CODE HERE
+  
+  attr_accessor :isbn, :price
+
+  def initialize(isbn, price)
+    raise ArgumentError if isbn.empty? || price <= 0
+    @isbn = isbn
+    @price = price
+  end
+
+  #format price with $ and 2 decimal places
+  def price_as_string
+    "$%.2f" % @price
+  end
+  
 end
